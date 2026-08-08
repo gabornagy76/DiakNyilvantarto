@@ -113,5 +113,22 @@
                      Margin="5"                     
                      VerticalAlignment="Center"/>
         </Grid>
+
+        <Button Grid.Row="2"
+                Content="Tanuló hozzáadása"
+                x:Name="hozzaadasButton"
+                Width="200"
+                Height="40"
+                FontSize="16"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Click="hozzaadasButton_Click"/>
+
+        <TextBlock Grid.Row="3"
+                   x:Name="allapotTextBlock"
+                   Text="Állapot: Nincs rögzített tanuló"
+                   FontSize="13"
+                   VerticalAlignment="Center"/>
+
     </Grid>
 </Window>

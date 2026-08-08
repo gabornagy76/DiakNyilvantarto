@@ -20,5 +20,20 @@ namespace DiakNyilvantarto
         {
             InitializeComponent();
         }
+
+        private void hozzaadasButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Olvasuk be az adatokat
+            string nev = nevTextBox.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nev))
+            {
+                allapotTextBlock.Text = "Hiba: A név megadása kötelező!";
+                nevTextBox.Focus();
+                return;
+            }
+
+            allapotTextBlock.Text = $"A következő tanulót sikeresen hozzáadtuk: {nev}";
+        }
     }
 }
