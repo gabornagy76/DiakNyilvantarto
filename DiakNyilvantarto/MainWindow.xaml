@@ -6,7 +6,24 @@
         xmlns:local="clr-namespace:DiakNyilvantarto"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Margin="20">
+        <!--A fő Grid Sorait hozzuk létre-->
+        <Grid.RowDefinitions>
+            <!--Az ablak címe-->
+            <RowDefinition Height="*"/>
+            <!--Adatbeviteli rész-->
+            <RowDefinition Height="*"/>
+            <!--Gombsor-->
+            <RowDefinition Height="*"/>
+            <!--Állapotjelző sor-->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Tanulói nyilvántartó"
+                   FontSize="30"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
     </Grid>
 </Window>
