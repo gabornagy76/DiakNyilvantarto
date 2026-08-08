@@ -13,19 +13,17 @@
         SizeToContent="WidthAndHeight"
         MaxHeight="800"
         MaxWidth="1200">
-    
-    
+
+
     <Grid Margin="20">
         <!--A fő Grid Sorait hozzuk létre-->
         <Grid.RowDefinitions>
             <!--Az ablak címe-->
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="Auto"/>
             <!--Adatbeviteli rész-->
             <RowDefinition Height="*"/>
-            <!--Gombsor-->
-            <RowDefinition Height="60"/>
             <!--Állapotjelző sor-->
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
@@ -35,95 +33,169 @@
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"/>
 
-        <Grid Grid.Row="1">
+        <Border Grid.Row="1"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                CornerRadius="10"
+                Padding="20"
+                Margin="0,0,0,10">
 
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+            <Grid>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <!--Belső cím-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Név-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Életkor-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Osztály-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Átlag-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Megjegyzés-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Gombsor-->
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <!--Első sor: Tanuló neve-->
-            <Label Grid.Row="0"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Belső cím-->
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Text="Tanuló adatai"
+                           FontSize="20"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0,0,0,15"/>
+
+                <!--Tanuló neve-->
+                <Label Grid.Row="1"
                    Grid.Column="0"
                    Content="_Név:"
                    FontSize="16"
                    VerticalAlignment="Center"
                    Target="{Binding ElementName=nevTextBox}"/>
 
-            <TextBox Grid.Row="0"
+                <TextBox Grid.Row="01"
                      Grid.Column="1"
                      x:Name="nevTextBox"
                      FontSize="16"
                      Height="30"
                      Margin="5"  
                      VerticalAlignment="Center"/>
-            
-            <!--Második sor: Tanuló életkora-->
-            <Label Grid.Row="1"
+
+                <!--Tanuló életkora-->
+                <Label Grid.Row="2"
                    Grid.Column="0"
                    Content="_Életkor:"
                    FontSize="16"
                    VerticalAlignment="Center"
                    Target="{Binding ElementName=eletkorTextBox}"/>
 
-            <TextBox Grid.Row="1"
+                <TextBox Grid.Row="2"
                      Grid.Column="1"
                      x:Name="eletkorTextBox"
                      FontSize="16"
                      Height="30"
                      Margin="5"  
                      VerticalAlignment="Center"/>
-            
-            <!--Harmadik sor: a tanuló osztálya-->
-            <Label Grid.Row="2"
+
+                <!--A tanuló osztálya-->
+                <Label Grid.Row="3"
                    Grid.Column="0"
                    Content="_Osztály:"
                    FontSize="16"
                    VerticalAlignment="Center"
                    Target="{Binding ElementName=osztalyTextBox}"/>
 
-            <TextBox Grid.Row="2"
+                <TextBox Grid.Row="3"
                      Grid.Column="1"
                      x:Name="osztalyTextBox"
                      FontSize="16"
                      Height="30"
                      Margin="5"  
                      VerticalAlignment="Center"/>
-            
-            <!--Negyedik sor: a tanuló átlaga-->
-            <Label Grid.Row="3"
+
+                <!--A tanuló átlaga-->
+                <Label Grid.Row="4"
                    Grid.Column="0"
                    Content="_Átlag:"
                    FontSize="16"
                    VerticalAlignment="Center"
                    Target="{Binding ElementName=atlagTextBox}"/>
 
-            <TextBox Grid.Row="3"
+                <TextBox Grid.Row="4"
                      Grid.Column="1"
                      x:Name="atlagTextBox"
                      FontSize="16"
                      Height="30"
                      Margin="5"                     
                      VerticalAlignment="Center"/>
-        </Grid>
 
-        <Button Grid.Row="2"
-                Content="Tanuló hozzáadása"
-                x:Name="hozzaadasButton"
-                Width="200"
-                Height="40"
-                FontSize="16"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Click="hozzaadasButton_Click"/>
+                <!--Megjegyzés-->
+                <Label Grid.Row="5"
+                       Grid.Column="0"
+                       Content="_Megjegyzés"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Target="{Binding ElementName=megjegyzesTextBox}"/>
 
+                <TextBox Grid.Row="5"
+                         Grid.Column="1"
+                         x:Name="megjegyzesTextBox"
+                         Height="90"
+                         Margin="5"
+                         FontSize="16"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         VerticalScrollBarVisibility="Auto"/>
+
+                <!--Gombsor-->
+                <!--Gombsor-->
+
+                <Grid Grid.Row="6"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Margin="0,15,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Grid.Column="1"
+                        Content="Mezők törlése"
+                        x:Name="mezokTorleseButton"
+                        Padding="20,10"
+                        Margin="5,20"
+                        FontSize="16"
+                        Click="mezokTorleseButton_Click"/>
+
+                    <Button 
+                        Grid.Column="2"
+                        Content="Tanuló hozzáadása"
+                        x:Name="hozzaadasButton"
+                        Padding="20,10"
+                        Margin="5,20"
+                        FontSize="16"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Click="hozzaadasButton_Click"/>
+                </Grid>
+            </Grid>
+
+        </Border>
+
+        <!--Állapotsor-->
         <TextBlock Grid.Row="3"
                    x:Name="allapotTextBlock"
                    Text="Állapot: Nincs rögzített tanuló"
