@@ -35,10 +35,21 @@ namespace DiakNyilvantarto
             }
 
             allapotTextBlock.Text = $"A következő tanulót sikeresen hozzáadtuk: {nev}";
+
+            BeviteliMezokTorlese();
         }
 
         // Mezők törlése gomb klikk esemény
         private void mezokTorleseButton_Click(object sender, RoutedEventArgs e)
+        {
+            BeviteliMezokTorlese();
+
+            allapotTextBlock.Text = "Állapot: a beviteli mezőket töröltük!";
+
+            nevTextBox.Focus();
+        }
+
+        private void BeviteliMezokTorlese()
         {
             // Minden TextBox elem értékét töröljük
             nevTextBox.Clear();
@@ -47,9 +58,7 @@ namespace DiakNyilvantarto
             atlagTextBox.Clear();
             megjegyzesTextBox.Clear();
 
-            allapotTextBlock.Text = "Állapot: a beviteli mezőket töröltük!";
-
-            nevTextBox.Focus();
         }
+
     }
 }
