@@ -26,7 +26,13 @@ namespace DiakNyilvantarto
         {
             // Olvasuk be az adatokat
             string nev = nevTextBox.Text.Trim();
+            string eletkorSzoveg = eletkorTextBox.Text.Trim();
+            string osztaly = osztalyTextBox.Text.Trim();
+            string atlagSzoveg = atlagTextBox.Text.Trim();
+            string megjegyzes = megjegyzesTextBox.Text.Trim();
 
+
+            // Megnézzük, hogy a név tartalmaz-e adatot:
             if (string.IsNullOrWhiteSpace(nev))
             {
                 allapotTextBlock.Text = "Hiba: A név megadása kötelező!";
@@ -34,8 +40,88 @@ namespace DiakNyilvantarto
                 return;
             }
 
+            // Az éltkor mező vizsgálata:
+            if (string.IsNullOrWhiteSpace(eletkorSzoveg))
+            {
+                allapotTextBlock.Text = "Hiba: Az életkor megadása kötelező!";
+                eletkorTextBox.Focus();
+                return;
+            }
+
+            // Próbáljuk meg számmá alakítani.
+
+            if (!int.TryParse(eletkorSzoveg, out int eletkor))
+            {
+                allapotTextBlock.Text = "Hiba: Az életkornak egész számnak kell lennie!";
+                eletkorTextBox.Focus();
+                eletkorTextBox.SelectAll();
+                return;
+            }
+
+            // Ellenőrizzük az életkor tartományát:
+            if (eletkor < 6 || eletkor >25)
+            {
+                allapotTextBlock.Text = "Hiba: Az életkornak 6 és 25 év között kell lennie!";
+                eletkorTextBox.Focus();
+                eletkorTextBox.SelectAll();
+                return;
+            }
+
+            // Az osztály kitöltésének vizsgálata:
+
+            if (string.IsNullOrWhiteSpace(osztaly))
+            {
+                allapotTextBlock.Text = "Hiba: Az osztály kitöltése kötelező!";
+                eletkorTextBox.Focus();
+                return;
+            }
+
+            // Az átlag mező vizsgálata:
+
+            if (string.IsNullOrWhiteSpace(atlagSzoveg))
+            {
+                allapotTextBlock.Text = "Hiba: Az átlag megadása kötelező!";
+                eletkorTextBox.Focus();
+                return;
+            }
+
+
+            // Próbáljuk meg számmá alakítani az átlagot is:
+
+            if (!double.TryParse(atlagSzoveg, out double atlag))
+            {
+                allapotTextBlock.Text = "Hiba: Az átlagnak számnak kell lennie!";
+                atlagTextBox.Focus();
+                atlagTextBox.SelectAll();
+                return;
+            }
+
+            // Ellenőrizzük az átlag tartományát:
+            if (atlag < 1 || atlag > 5)
+            {
+                allapotTextBlock.Text = "Hiba: Az átlagnak 1 és 5 között kell lennie!";
+                atlagTextBox.Focus();
+                atlagTextBox.SelectAll();
+                return;
+            }
+
+            // Összeállítjuk az eddigi adatokból a listaelemet:
+            string tanuloAdatok = $"{nev} - {eletkor} év - {osztaly} - átlag: {atlag:F2}";
+
+            // A megjegyzést csak akkor írjuk hozzá, ha kitöltötték:
+            if (!string.IsNullOrWhiteSpace(megjegyzes))
+            {
+                tanuloAdatok += $" - Megjegyzés: {megjegyzes}";
+            }
+
+            // Adjuk hozzá az új elemet a ListBox-hoz:
+            tanulokListBox.Items.Add(tanuloAdatok);
+
+
+            // Állapotsor visszajelzés:
             allapotTextBlock.Text = $"A következő tanulót sikeresen hozzáadtuk: {nev}";
 
+            // Kiürítjük a beviteli mezők tartalmát:
             BeviteliMezokTorlese();
         }
 

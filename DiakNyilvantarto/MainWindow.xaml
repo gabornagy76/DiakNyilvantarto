@@ -226,7 +226,7 @@
                                Margin="0,0,0,15"/>
 
                     <ListBox Grid.Row="1"
-                             x:Name="tanuolokListBox"
+                             x:Name="tanulokListBox"
                              FontSize="16"
                              Padding="5"/>
 
