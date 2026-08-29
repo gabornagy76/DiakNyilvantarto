@@ -33,40 +33,47 @@
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"/>
 
-        <Border Grid.Row="1"
-                BorderBrush="Gray"
-                BorderThickness="1"
-                CornerRadius="10"
-                Padding="20"
-                Margin="0,0,0,10">
+        <Grid Grid.Row="1">
 
-            <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <!--Belső cím-->
-                    <RowDefinition Height="Auto"/>
-                    <!--Név-->
-                    <RowDefinition Height="Auto"/>
-                    <!--Életkor-->
-                    <RowDefinition Height="Auto"/>
-                    <!--Osztály-->
-                    <RowDefinition Height="Auto"/>
-                    <!--Átlag-->
-                    <RowDefinition Height="Auto"/>
-                    <!--Megjegyzés-->
-                    <RowDefinition Height="*"
+            <Border Grid.Column="0"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Padding="20"
+                    Margin="0,0,0,10">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <!--Belső cím-->
+                        <RowDefinition Height="Auto"/>
+                        <!--Név-->
+                        <RowDefinition Height="Auto"/>
+                        <!--Életkor-->
+                        <RowDefinition Height="Auto"/>
+                        <!--Osztály-->
+                        <RowDefinition Height="Auto"/>
+                        <!--Átlag-->
+                        <RowDefinition Height="Auto"/>
+                        <!--Megjegyzés-->
+                        <RowDefinition Height="*"
                                    MinHeight="90"/>
-                    <!--Gombsor-->
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                        <!--Gombsor-->
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <!--Belső cím-->
-                <TextBlock Grid.Row="0"
+                    <!--Belső cím-->
+                    <TextBlock Grid.Row="0"
                            Grid.Column="0"
                            Grid.ColumnSpan="2"
                            Text="Tanuló adatai"
@@ -76,15 +83,15 @@
                            VerticalAlignment="Center"
                            Margin="0,0,0,15"/>
 
-                <!--Tanuló neve-->
-                <Label Grid.Row="1"
+                    <!--Tanuló neve-->
+                    <Label Grid.Row="1"
                    Grid.Column="0"
                    Content="_Név:"
                    FontSize="16"
                    VerticalAlignment="Center"
                    Target="{Binding ElementName=nevTextBox}"/>
 
-                <TextBox Grid.Row="1"
+                    <TextBox Grid.Row="1"
                      Grid.Column="1"
                      x:Name="nevTextBox"
                      FontSize="16"
@@ -92,15 +99,15 @@
                      Margin="5"  
                      VerticalAlignment="Center"/>
 
-                <!--Tanuló életkora-->
-                <Label Grid.Row="2"
+                    <!--Tanuló életkora-->
+                    <Label Grid.Row="2"
                    Grid.Column="0"
                    Content="_Életkor:"
                    FontSize="16"
                    VerticalAlignment="Center"
                    Target="{Binding ElementName=eletkorTextBox}"/>
 
-                <TextBox Grid.Row="2"
+                    <TextBox Grid.Row="2"
                      Grid.Column="1"
                      x:Name="eletkorTextBox"
                      FontSize="16"
@@ -108,15 +115,15 @@
                      Margin="5"  
                      VerticalAlignment="Center"/>
 
-                <!--A tanuló osztálya-->
-                <Label Grid.Row="3"
+                    <!--A tanuló osztálya-->
+                    <Label Grid.Row="3"
                    Grid.Column="0"
                    Content="_Osztály:"
                    FontSize="16"
                    VerticalAlignment="Center"
                    Target="{Binding ElementName=osztalyTextBox}"/>
 
-                <TextBox Grid.Row="3"
+                    <TextBox Grid.Row="3"
                      Grid.Column="1"
                      x:Name="osztalyTextBox"
                      FontSize="16"
@@ -124,15 +131,15 @@
                      Margin="5"  
                      VerticalAlignment="Center"/>
 
-                <!--A tanuló átlaga-->
-                <Label Grid.Row="4"
+                    <!--A tanuló átlaga-->
+                    <Label Grid.Row="4"
                    Grid.Column="0"
                    Content="_Átlag:"
                    FontSize="16"
                    VerticalAlignment="Center"
                    Target="{Binding ElementName=atlagTextBox}"/>
 
-                <TextBox Grid.Row="4"
+                    <TextBox Grid.Row="4"
                      Grid.Column="1"
                      x:Name="atlagTextBox"
                      FontSize="16"
@@ -140,15 +147,15 @@
                      Margin="5"                     
                      VerticalAlignment="Center"/>
 
-                <!--Megjegyzés-->
-                <Label Grid.Row="5"
+                    <!--Megjegyzés-->
+                    <Label Grid.Row="5"
                        Grid.Column="0"
                        Content="_Megjegyzés"
                        FontSize="16"
                        VerticalAlignment="Center"
                        Target="{Binding ElementName=megjegyzesTextBox}"/>
 
-                <TextBox Grid.Row="5"
+                    <TextBox Grid.Row="5"
                          Grid.Column="1"
                          x:Name="megjegyzesTextBox"                         
                          Margin="5"
@@ -157,21 +164,21 @@
                          AcceptsReturn="True"
                          VerticalScrollBarVisibility="Auto"/>
 
-                <!--Gombsor-->
-                <!--Gombsor-->
+                    <!--Gombsor-->
+                    <!--Gombsor-->
 
-                <Grid Grid.Row="6"
+                    <Grid Grid.Row="6"
                       Grid.Column="0"
                       Grid.ColumnSpan="2"
                       Margin="0,15,0,0">
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Button
+                        <Button
                         Grid.Column="1"
                         Content="Mezők törlése"
                         x:Name="mezokTorleseButton"
@@ -180,7 +187,7 @@
                         FontSize="16"
                         Click="mezokTorleseButton_Click"/>
 
-                    <Button 
+                        <Button 
                         Grid.Column="2"
                         Content="Tanuló hozzáadása"
                         x:Name="hozzaadasButton"
@@ -190,10 +197,18 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Click="hozzaadasButton_Click"/>
+                    </Grid>
                 </Grid>
-            </Grid>
 
-        </Border>
+            </Border>
+
+
+            <Border Grid.Column="1">
+                
+                
+                
+            </Border>
+        </Grid>
 
         <!--Állapotsor-->
         <TextBlock Grid.Row="2"
