@@ -227,6 +227,8 @@
 
                     <ListBox Grid.Row="1"
                              x:Name="tanulokListBox"
+                             ItemsSource="{Binding Tanulok}"
+                             
                              FontSize="16"
                              Padding="5"/>
 

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +17,20 @@ namespace DiakNyilvantarto
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        // Ebben a WPF specifikus gyűjteményben tároljuk a rögzített tanulókat.
+        public ObservableCollection<Tanulo> Tanulok { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+
+            // Hozzunk létre egy üres Tanulok gyűjteményt:
+            Tanulok = new ObservableCollection<Tanulo>();
+            DataContext = this;
+
+            nevTextBox.Focus();
+
         }
 
         // Tanulók hozzáadása gomb klikk esemény
@@ -105,6 +117,21 @@ namespace DiakNyilvantarto
                 return;
             }
 
+
+            // Hozzunk létre egy új Tanulo objektumot:
+            Tanulo ujTanulo = new Tanulo()
+            {
+                Nev = nev,
+                Eletkor = eletkor,
+                Osztaly = osztaly,
+                Atlag = atlag,
+                Megjegyzes = megjegyzes
+            };
+
+
+            Tanulok.Add(ujTanulo);
+
+            /*
             // Összeállítjuk az eddigi adatokból a listaelemet:
             string tanuloAdatok = $"{nev} - {eletkor} év - {osztaly} - átlag: {atlag:F2}";
 
@@ -116,7 +143,7 @@ namespace DiakNyilvantarto
 
             // Adjuk hozzá az új elemet a ListBox-hoz:
             tanulokListBox.Items.Add(tanuloAdatok);
-
+            */
 
             // Állapotsor visszajelzés:
             allapotTextBlock.Text = $"A következő tanulót sikeresen hozzáadtuk: {nev}";

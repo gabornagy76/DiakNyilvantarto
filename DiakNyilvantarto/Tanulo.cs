@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DiakNyilvantarto
 {
-    internal class Tanulo
+    public class Tanulo
     {
         public string Nev {  get; set; } = string.Empty;
 
@@ -15,5 +15,15 @@ namespace DiakNyilvantarto
         public double Atlag {  get; set; }
 
         public string Megjegyzes {  get; set; } = string.Empty;
+
+        public override string ToString()
+        {
+            if (string.IsNullOrWhiteSpace(Megjegyzes))
+            {
+                return $"{Nev} - {Eletkor} év - {Osztaly} - átlag: {Atlag:F2}";
+            }
+
+            return $"{Nev} - {Eletkor} év - {Osztaly} - átlag: {Atlag:F2} - Megjegyzés: {Megjegyzes}";
+        }
     }
 }
