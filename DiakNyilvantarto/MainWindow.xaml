@@ -8,7 +8,7 @@
         Title="Tanulónyilvántartó"
         Height="450"
         Width="800"
-        MinHeight="400"
+        MinHeight="600"
         MinWidth="550"
         SizeToContent="WidthAndHeight"
         MaxHeight="800"
@@ -54,7 +54,8 @@
                     <!--Átlag-->
                     <RowDefinition Height="Auto"/>
                     <!--Megjegyzés-->
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"
+                                   MinHeight="90"/>
                     <!--Gombsor-->
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -83,7 +84,7 @@
                    VerticalAlignment="Center"
                    Target="{Binding ElementName=nevTextBox}"/>
 
-                <TextBox Grid.Row="01"
+                <TextBox Grid.Row="1"
                      Grid.Column="1"
                      x:Name="nevTextBox"
                      FontSize="16"
@@ -149,8 +150,7 @@
 
                 <TextBox Grid.Row="5"
                          Grid.Column="1"
-                         x:Name="megjegyzesTextBox"
-                         Height="90"
+                         x:Name="megjegyzesTextBox"                         
                          Margin="5"
                          FontSize="16"
                          TextWrapping="Wrap"
@@ -196,7 +196,7 @@
         </Border>
 
         <!--Állapotsor-->
-        <TextBlock Grid.Row="3"
+        <TextBlock Grid.Row="2"
                    x:Name="allapotTextBlock"
                    Text="Állapot: Nincs rögzített tanuló"
                    FontSize="13"
