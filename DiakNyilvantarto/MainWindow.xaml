@@ -228,7 +228,7 @@
                     <ListBox Grid.Row="1"
                              x:Name="tanulokListBox"
                              ItemsSource="{Binding Tanulok}"
-                             
+                             SelectionChanged="tanulokListBox_SelectionChanged"
                              FontSize="16"
                              Padding="5"/>
 

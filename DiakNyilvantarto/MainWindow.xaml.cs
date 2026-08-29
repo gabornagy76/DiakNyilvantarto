@@ -173,5 +173,21 @@ namespace DiakNyilvantarto
 
         }
 
+
+        private void tanulokListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Megnézzük, hogy a kiválasztott elem Tanulo objektum-e. Ha igen akkor azonnal fel is vesszük egy ideiglenes ilyen változóba (kivalasztottTanulo):
+            if (tanulokListBox.SelectedItem is Tanulo kivalsztottTanulo)
+            {
+                nevTextBox.Text = kivalsztottTanulo.Nev;
+                eletkorTextBox.Text = kivalsztottTanulo.Eletkor.ToString();
+                osztalyTextBox.Text = kivalsztottTanulo.Osztaly;
+                atlagTextBox.Text = kivalsztottTanulo.Atlag.ToString();
+                megjegyzesTextBox.Text = kivalsztottTanulo.Megjegyzes;
+
+                allapotTextBlock.Text = $"Kiválasztott tanuló: {kivalsztottTanulo.Nev}";
+            }
+        }
+
     }
 }
