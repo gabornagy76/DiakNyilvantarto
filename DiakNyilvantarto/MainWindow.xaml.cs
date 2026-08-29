@@ -1,5 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
+using System.Security.AccessControl;
 using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,6 +26,53 @@ namespace DiakNyilvantarto
         // Ebben a WPF specifikus gyűjteményben tároljuk a rögzített tanulókat.
         public ObservableCollection<Tanulo> Tanulok { get; set; }
 
+        private readonly string fajlUt = System.IO.Path.Combine(AppContext.BaseDirectory, "tanulok.json");
+
+        private void Betoltes()
+        {
+            // Létezik-e a fájl?
+            if (!File.Exists(fajlUt))
+            {
+                return;
+            }
+
+            string json = File.ReadAllText(fajlUt);
+
+            // A betöltött fájl ha nem üres, akkor eltárolásra kerül egy betoltottTanulok nevű Tanulo listába visszaalakítva a json formátumról Tanulo objektummá.
+            List<Tanulo>? betoltottTanulok = JsonSerializer.Deserialize<List<Tanulo>>(json);
+
+            if (betoltottTanulok == null)
+            {
+                return;
+            }
+
+            // A fájlból létrehozott Tanulo objektumokat hozzáadjuk a meglévő gyűjteményhez:
+            foreach (Tanulo item in betoltottTanulok)
+            {
+                Tanulok.Add(item);
+            }
+        }
+
+
+        private void Mentes()
+        {
+
+            // Ha szükséges, akkor magát a json átalakítás opcióit is beállíthatjuk:
+            JsonSerializerOptions beallitasok = new JsonSerializerOptions
+            {
+                // Formázott szöveg:
+                WriteIndented = true,
+
+                // UTF-8, magyar karakterek:
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
+            };
+
+            string json = JsonSerializer.Serialize(Tanulok, beallitasok);
+
+            File.WriteAllText(fajlUt, json);
+        }
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,6 +83,7 @@ namespace DiakNyilvantarto
 
             nevTextBox.Focus();
 
+            Betoltes();
         }
 
         // Tanulók hozzáadása gomb klikk esemény
@@ -150,7 +203,7 @@ namespace DiakNyilvantarto
                 allapotTextBlock.Text = $"A következő tanulót sikeresen hozzáadtuk: {nev}";
 
                 // Kiürítjük a beviteli mezők tartalmát:
-                BeviteliMezokTorlese();
+                BeviteliMezokTorlese();                
             }
 
 
@@ -167,7 +220,7 @@ namespace DiakNyilvantarto
             // Adjuk hozzá az új elemet a ListBox-hoz:
             tanulokListBox.Items.Add(tanuloAdatok);
             */
-
+            Mentes();
             
         }
 
