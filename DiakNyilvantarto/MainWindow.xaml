@@ -203,9 +203,34 @@
             </Border>
 
 
-            <Border Grid.Column="1">
-                
-                
+            <Border Grid.Column="1"
+                    BorderBrush="Green"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Padding="20"
+                    Margin="10,0,0,10">
+
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Text="Rögzített tanulók"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0,0,0,15"/>
+
+                    <ListBox Grid.Row="1"
+                             x:Name="tanuolokListBox"
+                             FontSize="16"
+                             Padding="5"/>
+
+                </Grid>
                 
             </Border>
         </Grid>
