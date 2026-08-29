@@ -71,7 +71,7 @@ namespace DiakNyilvantarto
             }
 
             // Ellenőrizzük az életkor tartományát:
-            if (eletkor < 6 || eletkor >25)
+            if (eletkor < 6 || eletkor > 25)
             {
                 allapotTextBlock.Text = "Hiba: Az életkornak 6 és 25 év között kell lennie!";
                 eletkorTextBox.Focus();
@@ -118,18 +118,41 @@ namespace DiakNyilvantarto
             }
 
 
-            // Hozzunk létre egy új Tanulo objektumot:
-            Tanulo ujTanulo = new Tanulo()
+            if (tanulokListBox.SelectedItem is Tanulo kivalasztottTanulo)
             {
-                Nev = nev,
-                Eletkor = eletkor,
-                Osztaly = osztaly,
-                Atlag = atlag,
-                Megjegyzes = megjegyzes
-            };
+                kivalasztottTanulo.Nev = nev;
+                kivalasztottTanulo.Eletkor = eletkor;
+                kivalasztottTanulo.Osztaly = osztaly;
+                kivalasztottTanulo.Atlag = atlag;
+                kivalasztottTanulo.Megjegyzes = megjegyzes;
+
+                allapotTextBlock.Text = $"A következő tanulót sikeresen módosítottuk: {nev}";
+
+                tanulokListBox.Items.Refresh();
+            }
+
+            else
+            {
+                // Hozzunk létre egy új Tanulo objektumot:
+                Tanulo ujTanulo = new Tanulo()
+                {
+                    Nev = nev,
+                    Eletkor = eletkor,
+                    Osztaly = osztaly,
+                    Atlag = atlag,
+                    Megjegyzes = megjegyzes
+                };
 
 
-            Tanulok.Add(ujTanulo);
+                Tanulok.Add(ujTanulo);
+
+                // Állapotsor visszajelzés:
+                allapotTextBlock.Text = $"A következő tanulót sikeresen hozzáadtuk: {nev}";
+
+                // Kiürítjük a beviteli mezők tartalmát:
+                BeviteliMezokTorlese();
+            }
+
 
             /*
             // Összeállítjuk az eddigi adatokból a listaelemet:
@@ -145,11 +168,7 @@ namespace DiakNyilvantarto
             tanulokListBox.Items.Add(tanuloAdatok);
             */
 
-            // Állapotsor visszajelzés:
-            allapotTextBlock.Text = $"A következő tanulót sikeresen hozzáadtuk: {nev}";
-
-            // Kiürítjük a beviteli mezők tartalmát:
-            BeviteliMezokTorlese();
+            
         }
 
         // Mezők törlése gomb klikk esemény
@@ -171,6 +190,9 @@ namespace DiakNyilvantarto
             atlagTextBox.Clear();
             megjegyzesTextBox.Clear();
 
+            hozzaadasButton.Content = "Tanuló hozzáadása";
+
+            tanulokListBox.SelectedItem = null;
         }
 
 
@@ -186,6 +208,8 @@ namespace DiakNyilvantarto
                 megjegyzesTextBox.Text = kivalsztottTanulo.Megjegyzes;
 
                 allapotTextBlock.Text = $"Kiválasztott tanuló: {kivalsztottTanulo.Nev}";
+
+                hozzaadasButton.Content = "Tanuló módosítása";
             }
         }
 
