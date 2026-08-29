@@ -86,7 +86,7 @@ namespace DiakNyilvantarto
             Betoltes();
         }
 
-        // Tanulók hozzáadása gomb klikk esemény
+        // Tanulók hozzáadása és módosítása gomb klikk esemény
         private void hozzaadasButton_Click(object sender, RoutedEventArgs e)
         {
             // Olvasuk be az adatokat
@@ -171,7 +171,7 @@ namespace DiakNyilvantarto
             }
 
 
-            if (tanulokListBox.SelectedItem is Tanulo kivalasztottTanulo)
+            if (tanulokListView.SelectedItem is Tanulo kivalasztottTanulo)
             {
                 kivalasztottTanulo.Nev = nev;
                 kivalasztottTanulo.Eletkor = eletkor;
@@ -181,7 +181,7 @@ namespace DiakNyilvantarto
 
                 allapotTextBlock.Text = $"A következő tanulót sikeresen módosítottuk: {nev}";
 
-                tanulokListBox.Items.Refresh();
+                tanulokListView.Items.Refresh();
             }
 
             else
@@ -218,7 +218,7 @@ namespace DiakNyilvantarto
             }
 
             // Adjuk hozzá az új elemet a ListBox-hoz:
-            tanulokListBox.Items.Add(tanuloAdatok);
+            tanulokListView.Items.Add(tanuloAdatok);
             */
             Mentes();
             
@@ -245,14 +245,14 @@ namespace DiakNyilvantarto
 
             hozzaadasButton.Content = "Tanuló hozzáadása";
 
-            tanulokListBox.SelectedItem = null;
+            tanulokListView.SelectedItem = null;
         }
 
 
-        private void tanulokListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void tanulokListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Megnézzük, hogy a kiválasztott elem Tanulo objektum-e. Ha igen akkor azonnal fel is vesszük egy ideiglenes ilyen változóba (kivalasztottTanulo):
-            if (tanulokListBox.SelectedItem is Tanulo kivalsztottTanulo)
+            if (tanulokListView.SelectedItem is Tanulo kivalsztottTanulo)
             {
                 nevTextBox.Text = kivalsztottTanulo.Nev;
                 eletkorTextBox.Text = kivalsztottTanulo.Eletkor.ToString();

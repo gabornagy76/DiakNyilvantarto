@@ -225,12 +225,40 @@
                                VerticalAlignment="Center"
                                Margin="0,0,0,15"/>
 
-                    <ListBox Grid.Row="1"
-                             x:Name="tanulokListBox"
-                             ItemsSource="{Binding Tanulok}"
-                             SelectionChanged="tanulokListBox_SelectionChanged"
-                             FontSize="16"
-                             Padding="5"/>
+                    <ListView Grid.Row="1"
+                              x:Name="tanulokListView"
+                              ItemsSource="{Binding Tanulok}"
+                              SelectionChanged="tanulokListView_SelectionChanged"
+                              FontSize="16"
+                              Padding="5">
+
+                        <ListView.View>
+
+                            <GridView>
+                                <GridViewColumn Header="Név"
+                                                Width="180"
+                                                DisplayMemberBinding="{Binding Nev}"/>
+
+                                <GridViewColumn Header="Életkor"
+                                                Width="80"
+                                                DisplayMemberBinding="{Binding Eletkor, StringFormat={}{0} év}"/>
+
+                                <GridViewColumn Header="Osztály"
+                                                Width="100"
+                                                DisplayMemberBinding="{Binding Osztaly}"/>
+
+                                <GridViewColumn Header="Átlag"
+                                                Width="80"
+                                                DisplayMemberBinding="{Binding Atlag, StringFormat=F2}"/>
+
+                                <GridViewColumn Header="Megjegyzés"
+                                                Width="250"
+                                                DisplayMemberBinding="{Binding Megjegyzes}"/>
+                            </GridView>
+                            
+                        </ListView.View>
+
+                    </ListView>
 
                 </Grid>
                 
